@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+int main()
+{
+    int resultat;
+    int resultat2;
+    int somme;
+    srand(time(NULL));
+    resultat = 2+rand()%12;
+
+    printf("resultat de lancement de la somme des deux des : %d\n",resultat);
+
+    printf("Vous avancez de %d ",resultat,"cases ");
+
+    return 0;
+}
+
