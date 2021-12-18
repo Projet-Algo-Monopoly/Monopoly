@@ -1,1 +1,65 @@
+int main()
+{
+    printf(" _____________________________________________________________________________________________________________\n");
+    printf("|          |__________|__________|__________|          |__________|__________|__________|__________|          |\n");
+    printf("|          |          |          |          |          |          |          |          |          |          |\n");
+    printf("|          |          |  CAISSE  |          |    LA    |          |          |          |          |          |\n");
+    printf("|  DEPART  |CASABLANCA|    DE    |MARRACKECH|   TOUR   |BARCELONE |  CHANCE  |  MADRID  | SEVILLE  |  PRISON  |\n");
+    printf("|          |          |COMMUNAUTE|          |  EIFFEL  |          |          |          |          |          |\n");
+    printf("|          |          |          |          |          |          |          |          |          |          |\n");
+    printf("|__________|__________|__________|__________|__________|__________|__________|__________|__________|__________|\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|    LOS   |                                                                                       | TORONTO  |\n");
+    printf("|  ANGELES |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|    NEW   |                                                                                       |          |\n");
+    printf("|   YORK   |                                                                                       | MONTREAL |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|          |                                                                                       |__________|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|    LE    |                                                                                       |          |\n");
+    printf("|   BURJ   |                                                                                       | VANCOUVER|\n");
+    printf("|  KHALIFA |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|__________|                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |    LE    |\n");
+    printf("|  TOKYO   |                                                                                       | CORCOVADO|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|  KYOTO   |                                                                                       |   PARIS  |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|__________|                                                                                       |__________|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|  OSAKA   |                                                                                       | TOURCOING|\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|          |                                                                                       |          |\n");
+    printf("|__________|_______________________________________________________________________________________|__________|\n");
+    printf("|          |__________|__________|__________|          |__________|__________|__________|__________|          |\n");
+    printf("|          |          |          |          |          |          |          |          |          |          |\n");
+    printf("|   ALLEZ  |          |  CAISSE  |          |     LE   |          |          |          |   HONG   |   PARC   |\n");
+    printf("|    EN    |ALEXANDRIE|    DE    | LE CAIRE |    TAJ   |  PEKIN   |  CHANCE  |  SHANGAI |    --    |  GRATUIT |\n");
+    printf("|  PRISON  |          |COMMUNAUTE|          |   MAHAL  |          |          |          |   KONG   |          |\n");
+    printf("|          |          |          |          |          |          |          |          |          |          |\n");
+    printf("|__________|__________|__________|__________|__________|__________|__________|__________|__________|__________|\n");
+
+}
+
+
+
 
