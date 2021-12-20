@@ -1,0 +1,27 @@
+# #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+int main()
+{
+    int resultat;
+    int resultat1;
+    int somme;
+    srand(time(NULL));
+    resultat = 1+rand()%6;
+    resultat1= 1+rand()%6;
+    somme=resultat+resultat1;
+
+    printf("resultat de lancement de la somme des deux des : %d\n",somme);
+    if (resultat==resultat1)
+    {
+        printf("Vous avez fait un double de : %d\n",resultat);
+        printf("Vous pouvez rejouez \n");
+    }
+
+    printf("Vous avancez de %d ",somme,"cases ");
+
+    return 0;
+}
+
