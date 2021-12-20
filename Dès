@@ -5,23 +5,50 @@
 
 int main()
 {
-    int resultat;
-    int resultat1;
-    int somme;
-    srand(time(NULL));
-    resultat = 1+rand()%6;
-    resultat1= 1+rand()%6;
-    somme=resultat+resultat1;
 
-    printf("resultat de lancement de la somme des deux des : %d\n",somme);
+    srand(time(NULL));
+    int resultat = 1+rand()%6;
+    int resultat1= 1+rand()%6;
+    int somme=resultat+resultat1;
+    int resultat2 = 1+rand()%6;
+    int resultat3= 1+rand()%6;
+    int resultat4 = 1+rand()%6;
+    int resultat5= 1+rand()%6;
+    int somme1=0;
+    int somme2=0;
+
+    printf("resultat du lancement de la somme des deux des : %d\n",somme);
+    printf("resultat du premier de : %d\n", resultat);
+    printf("resultat du deuxieme de : %d\n", resultat1);
+
     if (resultat==resultat1)
     {
         printf("Vous avez fait un double de : %d\n",resultat);
         printf("Vous pouvez rejouez \n");
+        somme1=resultat2+resultat3;
+        printf("resultat du deuxieme lancers: %d\n",somme1);
+        if (resultat2==resultat3)
+        {
+            printf("Vous avez fait un deuxieme double, cette fois un double de : %d\n",resultat2);
+            printf("Vous pouvez rejouez un troisieme fois, attention si vous refaites un double vous devrais aller en prison ! \n");
+            somme2=resultat4+resultat5;
+            printf("resultat du troisieme lancers: %d\n",somme2);
+            if(resultat4==resultat5)
+            {
+                printf("Encore un double, cette fois ci de : %d\n",resultat4);
+                printf("C'est le double de trop, vous allez tous droit en prison !\n");
+            }
+
+        }
+
     }
 
-    printf("Vous avancez de %d ",somme,"cases ");
+    printf("Vous avancez de %d",somme+somme1+somme2);
+    printf(" cases ");
+
+
 
     return 0;
 }
+
 
