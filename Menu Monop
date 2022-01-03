@@ -1,0 +1,295 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <string.h>
+#include <time.h>
+
+int verifChoix(){
+    char chaine[30];
+    int entier=0;
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    fflush(stdout);
+    fgets(chaine,sizeof chaine,stdin);
+    while( !((entier=atoi(chaine)) || *chaine=='0' )){      //la fonction atoi : ASCII to Integer renvoie 0 si chaine est un caractère.
+
+        SetConsoleTextAttribute(hConsole,4);
+        puts("Choix invalide! Entrez un entier");
+        SetConsoleTextAttribute(hConsole,5);
+        printf(">");
+        SetConsoleTextAttribute(hConsole,7);
+
+        fflush(stdout);
+        fgets(chaine,sizeof chaine,stdin);
+    }
+    return entier;
+}
+
+typedef struct
+{
+    char* nomJoueur;
+
+    int money;              //Argent que le joueur possède au cours de la partie. (valeur toujours positive)
+    int position;           //position du joueur sur le plateau (1 à 32).
+    int prison;             //1 VRAI 0 FAUX.
+    int tourEnPrison;       //Max 3 tours en prison. Après il est libéré.
+    int nbCSP;              //nombre de cartes sortie de prison que le joueur possède 0,1 ou 2.
+
+    int prop;               //Nombre de prop (non hypothéqué) que possède le joueur
+    int maisons;            //Nombre de maisons du joueur
+    int hotel;              //Nombre d'hôtels du joueur
+
+
+
+}Joueur;
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+
+}
+
+int choix;
+int i=0;
+int nbJoueurs=0;
+Joueur* listeJoueurs;
+int alea=0;
+char flush;
+Joueur* listeJoueur;
+
+Joueur* initJoueur(int* nbJoueurs)
+{
+    int i=0;
+    int alea=0;
+    char flush;
+
+
+    printf("Entrer le nombre de joueurs voulant participer au jeu  :\n");
+    *nbJoueurs=verifChoix();
+    Joueur* listeJoueurs = (Joueur*) malloc(*nbJoueurs * sizeof(Joueur) );
+
+            for (i=0;i< *nbJoueurs;i++)
+            {
+                listeJoueurs[i].nomJoueur=(char*) malloc(sizeof(char));
+                printf("Saisissez le nom du joueur %d \n",i+1);
+                scanf("%s", listeJoueurs[i].nomJoueur);
+                scanf("%c", &flush);
+
+
+                listeJoueurs[i].money = 1500;
+                listeJoueurs[i].position = 1;
+                listeJoueurs[i].prison = 0;
+                listeJoueurs[i].nbCSP = 0;
+                listeJoueurs[i].tourEnPrison = 0;
+                listeJoueurs[i].prop = 0;
+                listeJoueurs[i].maisons = 0;
+                listeJoueurs[i].hotel = 0;
+
+
+                printf("Banque: Vous recevez 1500 euros de bienvenue.\n");
+
+
+            }
+}
+
+
+
+int main()
+{
+    //system("color 7c");
+
+
+
+    Color(15,0);
+    printf("II IIIIIIIIIIIIIIIII///////////////////////////////////////////////////////////////////////////////////////////////II IIIIIIIIIIIIIIIII");
+    printf("II II   _________ II///////////////////////////////////////////////////////////////////////////////////////////////II _________   II II");
+    printf("II II   IIIIIIIII II///////////////////////////////////////////////////////////////////////////////////////////////II IIIIIIIII   II II");
+    printf("II II   II     II II///////////////////////////////////////////////////////////////////////////////////////////////II II     II   II II");
+    printf("II II   IIIIII II II///////////////////////////////////////////////////////////////////////////////////////////////II II IIIIII   II II");
+    printf("II II       II II II                                                                                               II II II       II II");
+    printf("II IIIIIIIIIII II II                                                                                               II II IIIIIIIIIII II");
+    printf("II____________ II II                                                                                               II II ____________II");
+    printf("IIIIIIIIIIIIIIIII II                                                                                               II IIIIIIIIIIIIIIIII");
+
+
+
+    printf("\n");
+
+    Color(15, 4);
+    printf("               **       **           ***         **         **      ***      *******        ***       ***       ***     *** \n");
+    printf("              ****     ****        **   **      ****       **     **   **    ***    **    **   **     ***        ***   *** \n");
+    printf("             ******   ******      **     **    **  **     **     **     **   ***    **   **     **    ***          *****  \n");
+    printf("            ***  *** ***  ***     **     **   **    **   **      **     **   *******     **     **    ***           ***      \n");
+    printf("           ***    *****    ***     **   **   **      ** **        **   **    ***          **   **     ********      ***     \n");
+    printf("          ***               ***      ***    **        ***           ***      ***            ***       ********      ***   \n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    Color(15, 0);
+    printf("Que voulez vous faire ?\n");
+    Color(12, 0);
+    printf("                                               --------------------Menu--------------------                                       \n");
+    printf("\n");
+    Color(15, 0);
+    printf ("                                                      1/Demarer une nouvelle partie\n");
+    printf("\n");
+    printf("                                                     2/Sauvegardez la partie en cours\n");
+    printf("\n");
+    printf("                                                       3/Charger une ancienne partie\n");
+    printf("\n");
+    printf("                                                           4/Afficher les regles\n");
+    printf("\n");
+    printf("                                             5/Afficher le nom des membres de l'equipe du projet\n");
+    printf("\n");
+    printf("                                                                 6/Quitter\n");
+    printf("\n");
+    printf("Veuillez selectionnez un numero\n");
+
+
+
+        Color(15, 0);
+        if (choix==6)
+        {
+            printf("Appuyez sur une touche pour confirmer !\n");
+
+        }
+
+
+        while (choix==6)
+        {
+
+            printf("\n");
+
+            scanf("%d",&choix);
+
+            if (choix==1)
+            {
+                Joueur* initJoueur(int* nbJoueurs)
+                {
+                    int i=0;
+                    int alea=0;
+                    char flush;
+                    Joueur tmp;
+
+
+
+                    printf("Entrer le nombre de joueurs voulant participer au jeu  :\n");
+                    *nbJoueurs=verifChoix();
+                    Joueur* listeJoueurs = (Joueur*) malloc(*nbJoueurs * sizeof(Joueur) );
+
+                    for (i=0;i< *nbJoueurs;i++)
+                    {
+                        listeJoueurs[i].nomJoueur=(char*) malloc(sizeof(char));
+                        printf("Saisissez le nom du joueur %d \n",i+1);
+                        scanf("%s", listeJoueurs[i].nomJoueur);
+                        scanf("%c", &flush);
+
+
+                        listeJoueurs[i].money = 1500;
+                        listeJoueurs[i].position = 1;
+                        listeJoueurs[i].prison = 0;
+                        listeJoueurs[i].nbCSP = 0;
+                        listeJoueurs[i].tourEnPrison = 0;
+                        listeJoueurs[i].prop = 0;
+                        listeJoueurs[i].maisons = 0;
+                        listeJoueurs[i].hotel = 0;
+
+
+                        printf("Banque: Vous recevez 1500 euros de bienvenue.\n");
+                    }
+
+
+
+
+                    srand(time(NULL));
+                    for(i=0; i<*nbJoueurs; i++)
+                    {
+                        alea= rand()% *nbJoueurs;
+                        tmp=listeJoueurs[alea];
+                        listeJoueurs[alea]= listeJoueurs[i];
+                        listeJoueurs[i]= tmp;
+
+                    }
+
+
+
+
+
+
+
+
+                }
+            }
+
+
+            if (choix==2)
+            {
+
+            }
+
+
+            if (choix==3)
+            {
+
+            }
+
+
+            if (choix==4)
+            {
+                FILE*fp;
+                fp=fopen("fichier.txt","r");
+                if (fp==NULL)
+                {
+                    printf("Erreur fopen\n");
+
+                }
+
+                char c;
+                printf("\n");
+                while((c=fgetc(fp))!=EOF)
+
+                printf("%c",c);
+                printf("\n");
+                printf("\n");
+                printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
+            }
+            if (choix==5)
+            {
+                printf("                                                        Les membres de l'equipe sont : \n");
+                printf("\n");
+                printf("                                                             Titouan Vanlerenberghe\n");
+                printf("\n");
+                printf("                                                                 Elisa Hagege\n");
+                printf("\n");
+                printf("                                                             Julien Codjia Sicard\n");
+                printf("\n");
+                printf("                                                               Rayane Bouslimani\n");
+                printf("\n");
+                printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
+            }
+
+
+            if (choix==6)
+                &
+                printf("Veuillez appuyer sur un touche pour confirmer :\n");
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+    return 0;
+
+}
+
