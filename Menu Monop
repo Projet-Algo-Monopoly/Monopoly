@@ -4,27 +4,6 @@
 #include <string.h>
 #include <time.h>
 
-int verifChoix(){
-    char chaine[30];
-    int entier=0;
-
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    fflush(stdout);
-    fgets(chaine,sizeof chaine,stdin);
-    while( !((entier=atoi(chaine)) || *chaine=='0' )){      //la fonction atoi : ASCII to Integer renvoie 0 si chaine est un caractère.
-
-        SetConsoleTextAttribute(hConsole,4);
-        puts("Choix invalide! Entrez un entier");
-        SetConsoleTextAttribute(hConsole,5);
-        printf(">");
-        SetConsoleTextAttribute(hConsole,7);
-
-        fflush(stdout);
-        fgets(chaine,sizeof chaine,stdin);
-    }
-    return entier;
-}
 
 typedef struct
 {
@@ -42,7 +21,7 @@ typedef struct
 
 
 
-}Joueur;
+} Joueur;
 
 void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
 {
@@ -51,48 +30,46 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
 
 }
 
+
 int choix;
-int i=0;
 int nbJoueurs=0;
-Joueur* listeJoueurs;
-int alea=0;
-char flush;
-Joueur* listeJoueur;
 
-Joueur* initJoueur(int* nbJoueurs)
+
+
+
+int saisirJoueursAvecTableau (char NOMSDESJOUEURS[4][15])
 {
-    int i=0;
-    int alea=0;
-    char flush;
+    int nombreDeJoueur = 0;
 
+    Color(14,0);
+    do
+    {
+        printf("Saisir le nombre de Joueurs (max 4): ");
+        scanf("%d", &nombreDeJoueur);
+    }
+    while(nombreDeJoueur<1 || nombreDeJoueur >4);
 
-    printf("Entrer le nombre de joueurs voulant participer au jeu  :\n");
-    *nbJoueurs=verifChoix();
-    Joueur* listeJoueurs = (Joueur*) malloc(*nbJoueurs * sizeof(Joueur) );
+    for (int i=0; i<nombreDeJoueur; i++ )
+    {
+        printf("\nSaisir le nom du joueur %d : ", i+1);
+        scanf("%s", NOMSDESJOUEURS[i]);
+    }
 
-            for (i=0;i< *nbJoueurs;i++)
-            {
-                listeJoueurs[i].nomJoueur=(char*) malloc(sizeof(char));
-                printf("Saisissez le nom du joueur %d \n",i+1);
-                scanf("%s", listeJoueurs[i].nomJoueur);
-                scanf("%c", &flush);
+    Color(13,0);
+    for(int i=0; i<nombreDeJoueur; i++)
+    {
+        //Color(5+i,0);
+        printf("\nJoueur %d: %s\n",i+1, NOMSDESJOUEURS[i]);
+    }
 
-
-                listeJoueurs[i].money = 1500;
-                listeJoueurs[i].position = 1;
-                listeJoueurs[i].prison = 0;
-                listeJoueurs[i].nbCSP = 0;
-                listeJoueurs[i].tourEnPrison = 0;
-                listeJoueurs[i].prop = 0;
-                listeJoueurs[i].maisons = 0;
-                listeJoueurs[i].hotel = 0;
-
-
-                printf("Banque: Vous recevez 1500 euros de bienvenue.\n");
-
-
-            }
+    Color(15,0);
+    return nombreDeJoueur;
 }
+
+
+
+
+
 
 
 
@@ -100,8 +77,14 @@ int main()
 {
     //system("color 7c");
 
+    int i=0;
+    int alea=0;
+    Joueur tmp;
+    char flush;
 
 
+    char NOMSDESJOUEURS[4][15];
+    int nombreDeJoueur=0;
     Color(15,0);
     printf("II IIIIIIIIIIIIIIIII///////////////////////////////////////////////////////////////////////////////////////////////II IIIIIIIIIIIIIIIII");
     printf("II II   _________ II///////////////////////////////////////////////////////////////////////////////////////////////II _________   II II");
@@ -150,146 +133,114 @@ int main()
 
 
 
-        Color(15, 0);
-        if (choix==6)
+    Color(15, 0);
+    if (choix==6)
+    {
+        printf("Appuyez sur une touche pour confirmer !\n");
+    }
+
+
+
+    while (choix!=6)
+    {
+
+        printf("\n");
+
+        scanf("%d",&choix);
+
+        if (choix==1)
         {
-            printf("Appuyez sur une touche pour confirmer !\n");
+
+            int nombreDeJoueur = saisirJoueursAvecTableau(NOMSDESJOUEURS);
+            printf("\n");
+            printf("Nombre de joueurs :  %d", nombreDeJoueur);
+
+
+
 
         }
 
 
-        while (choix==6)
+
+
+        if (choix==2)
         {
 
+
+        }
+
+
+        if (choix==3)
+        {
+
+        }
+
+
+        if (choix==4)
+        {
+            FILE*fp;
+            fp=fopen("fichier.txt","r");
+            if (fp==NULL)
+            {
+                printf("Erreur fopen\n");
+
+            }
+
+            char c;
             printf("\n");
-
-            scanf("%d",&choix);
-
-            if (choix==1)
-            {
-                Joueur* initJoueur(int* nbJoueurs)
-                {
-                    int i=0;
-                    int alea=0;
-                    char flush;
-                    Joueur tmp;
-
-
-
-                    printf("Entrer le nombre de joueurs voulant participer au jeu  :\n");
-                    *nbJoueurs=verifChoix();
-                    Joueur* listeJoueurs = (Joueur*) malloc(*nbJoueurs * sizeof(Joueur) );
-
-                    for (i=0;i< *nbJoueurs;i++)
-                    {
-                        listeJoueurs[i].nomJoueur=(char*) malloc(sizeof(char));
-                        printf("Saisissez le nom du joueur %d \n",i+1);
-                        scanf("%s", listeJoueurs[i].nomJoueur);
-                        scanf("%c", &flush);
-
-
-                        listeJoueurs[i].money = 1500;
-                        listeJoueurs[i].position = 1;
-                        listeJoueurs[i].prison = 0;
-                        listeJoueurs[i].nbCSP = 0;
-                        listeJoueurs[i].tourEnPrison = 0;
-                        listeJoueurs[i].prop = 0;
-                        listeJoueurs[i].maisons = 0;
-                        listeJoueurs[i].hotel = 0;
-
-
-                        printf("Banque: Vous recevez 1500 euros de bienvenue.\n");
-                    }
-
-
-
-
-                    srand(time(NULL));
-                    for(i=0; i<*nbJoueurs; i++)
-                    {
-                        alea= rand()% *nbJoueurs;
-                        tmp=listeJoueurs[alea];
-                        listeJoueurs[alea]= listeJoueurs[i];
-                        listeJoueurs[i]= tmp;
-
-                    }
-
-
-
-
-
-
-
-
-                }
-            }
-
-
-            if (choix==2)
-            {
-
-            }
-
-
-            if (choix==3)
-            {
-
-            }
-
-
-            if (choix==4)
-            {
-                FILE*fp;
-                fp=fopen("fichier.txt","r");
-                if (fp==NULL)
-                {
-                    printf("Erreur fopen\n");
-
-                }
-
-                char c;
-                printf("\n");
-                while((c=fgetc(fp))!=EOF)
+            while((c=fgetc(fp))!=EOF)
 
                 printf("%c",c);
-                printf("\n");
-                printf("\n");
-                printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
-            }
-            if (choix==5)
-            {
-                printf("                                                        Les membres de l'equipe sont : \n");
-                printf("\n");
-                printf("                                                             Titouan Vanlerenberghe\n");
-                printf("\n");
-                printf("                                                                 Elisa Hagege\n");
-                printf("\n");
-                printf("                                                             Julien Codjia Sicard\n");
-                printf("\n");
-                printf("                                                               Rayane Bouslimani\n");
-                printf("\n");
-                printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
-            }
-
-
-            if (choix==6)
-                &
-                printf("Veuillez appuyer sur un touche pour confirmer :\n");
-
-
-
-
-
-
-
-
-
+            printf("\n");
+            printf("\n");
+            printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
         }
+        if (choix==5)
+        {
+            printf("                                                        Les membres de l'equipe sont : \n");
+            printf("\n");
+            printf("                                                             Titouan Vanlerenberghe\n");
+            printf("\n");
+            printf("                                                                 Elisa Hagege\n");
+            printf("\n");
+            printf("                                                             Julien Codjia Sicard\n");
+            printf("\n");
+            printf("                                                               Rayane Bouslimani\n");
+            printf("\n");
+            printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
+        }
+
+
+        if (choix==6)
+            printf("Veuillez appuyer sur un touche pour confirmer :\n");
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 
 
     return 0;
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
