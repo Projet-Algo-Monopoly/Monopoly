@@ -1,70 +1,14 @@
+/Importation des bibliothèques et headers utiles.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <string.h>
 #include <time.h>
-
-
-typedef struct
-{
-    char* nomJoueur;
-
-    int money;              //Argent que le joueur possède au cours de la partie. (valeur toujours positive)
-    int position;           //position du joueur sur le plateau (1 à 32).
-    int prison;             //1 VRAI 0 FAUX.
-    int tourEnPrison;       //Max 3 tours en prison. Après il est libéré.
-    int nbCSP;              //nombre de cartes sortie de prison que le joueur possède 0,1 ou 2.
-
-    int prop;               //Nombre de prop (non hypothéqué) que possède le joueur
-    int maisons;            //Nombre de maisons du joueur
-    int hotel;              //Nombre d'hôtels du joueur
+#include "fonctions.h"
 
 
 
-} Joueur;
-
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
-
-}
-
-
-int choix;
-int nbJoueurs=0;
-
-
-
-
-int saisirJoueursAvecTableau (char NOMSDESJOUEURS[4][15])
-{
-    int nombreDeJoueur = 0;
-
-    Color(14,0);
-    do
-    {
-        printf("Saisir le nombre de Joueurs (max 4): ");
-        scanf("%d", &nombreDeJoueur);
-    }
-    while(nombreDeJoueur<1 || nombreDeJoueur >4);
-
-    for (int i=0; i<nombreDeJoueur; i++ )
-    {
-        printf("\nSaisir le nom du joueur %d : ", i+1);
-        scanf("%s", NOMSDESJOUEURS[i]);
-    }
-
-    Color(13,0);
-    for(int i=0; i<nombreDeJoueur; i++)
-    {
-        //Color(5+i,0);
-        printf("\nJoueur %d: %s\n",i+1, NOMSDESJOUEURS[i]);
-    }
-
-    Color(15,0);
-    return nombreDeJoueur;
-}
 
 
 
@@ -75,17 +19,16 @@ int saisirJoueursAvecTableau (char NOMSDESJOUEURS[4][15])
 
 int main()
 {
-    //system("color 7c");
+     //initialisation des variables utiles
 
     int i=0;
-    int alea=0;
-    Joueur tmp;
-    char flush;
+    int choix=0;
 
 
-    char NOMSDESJOUEURS[4][15];
-    int nombreDeJoueur=0;
+    char nomsJoueurs[4][20];
+    int nbJoueur =0;
     Color(15,0);
+    //Dessin pour ajouter du décor à la console
     printf("II IIIIIIIIIIIIIIIII///////////////////////////////////////////////////////////////////////////////////////////////II IIIIIIIIIIIIIIIII");
     printf("II II   _________ II///////////////////////////////////////////////////////////////////////////////////////////////II _________   II II");
     printf("II II   IIIIIIIII II///////////////////////////////////////////////////////////////////////////////////////////////II IIIIIIIII   II II");
@@ -101,6 +44,7 @@ int main()
     printf("\n");
 
     Color(15, 4);
+    //Dessin pour ajouter du décor à la console et logo du jeu Monopoly
     printf("               **       **           ***         **         **      ***      *******        ***       ***       ***     *** \n");
     printf("              ****     ****        **   **      ****       **     **   **    ***    **    **   **     ***        ***   *** \n");
     printf("             ******   ******      **     **    **  **     **     **     **   ***    **   **     **    ***          *****  \n");
@@ -114,6 +58,7 @@ int main()
     Color(15, 0);
     printf("Que voulez vous faire ?\n");
     Color(12, 0);
+    //Affichage du menu principal
     printf("                                               --------------------Menu--------------------                                       \n");
     printf("\n");
     Color(15, 0);
@@ -129,7 +74,10 @@ int main()
     printf("\n");
     printf("                                                                 6/Quitter\n");
     printf("\n");
+    //Choix
     printf("Veuillez selectionnez un numero\n");
+
+
 
 
 
@@ -137,6 +85,7 @@ int main()
     if (choix==6)
     {
         printf("Appuyez sur une touche pour confirmer !\n");
+        //Appuyez sur une touche pour confirmer le fait de quitter le programme et donc le jeu
     }
 
 
@@ -148,12 +97,12 @@ int main()
 
         scanf("%d",&choix);
 
-        if (choix==1)
+        if (choix==1)//Si le choix est "1", le programme demande le nombre et les noms des joueurs.
         {
 
-            int nombreDeJoueur = saisirJoueursAvecTableau(NOMSDESJOUEURS);
+            int nbJoueur  = saisirJoueurs(nomsJoueurs);
             printf("\n");
-            printf("Nombre de joueurs :  %d", nombreDeJoueur);
+            printf("Nombre de joueurs :  %d", nbJoueur );
 
 
 
@@ -163,26 +112,26 @@ int main()
 
 
 
-        if (choix==2)
+        if (choix==2)//Si le choix est "2" le programme doit sauvegarder la partie en cours (Fonction pas encore développée)
         {
 
 
         }
 
 
-        if (choix==3)
+        if (choix==3)//Si le choix est "3" le programme doit charger une partie sauvegardé (Fonction pas encore développée)
         {
 
         }
 
 
-        if (choix==4)
+        if (choix==4)//Si le choix est "4" le programme ouvre et affiche le fichier : "fichier.txt", qui contient les règles du jeu.
         {
             FILE*fp;
             fp=fopen("fichier.txt","r");
             if (fp==NULL)
             {
-                printf("Erreur fopen\n");
+                printf("Erreur fopen\n");//Affiche une erreur si le fichier ne s'ouvre pas.
 
             }
 
@@ -195,7 +144,7 @@ int main()
             printf("\n");
             printf("Veuillez selectionner ce que vous voulez faire ensuite ou appuyez sur 6 pour quitter  :\n");
         }
-        if (choix==5)
+        if (choix==5)//Affiche les membres de l'équipe ayant participé au projet
         {
             printf("                                                        Les membres de l'equipe sont : \n");
             printf("\n");
@@ -211,7 +160,7 @@ int main()
         }
 
 
-        if (choix==6)
+        if (choix==6)//Permet de quitter le programme si l'utilisateur appuie sur 6 dans le menu principal.
             printf("Veuillez appuyer sur un touche pour confirmer :\n");
 
 
@@ -233,6 +182,76 @@ int main()
 
 
 
+
+
+//Header "fonctions.h"
+
+#ifndef FONCTIONS_H_INCLUDED
+#define FONCTIONS_H_INCLUDED
+
+typedef struct//structure regroupant toutes les infos du joueurs
+{
+    char* nomJoueur;
+
+    int money;              //Argent que le joueur possède au cours de la partie.
+    int position;             //position du joueur sur le plateau .
+    int propriete;           //Nombre de propriete que possède le joueur
+    int maisons;            //Nombre de maisons du joueur
+    int hotel;              //Nombre d'hôtels du joueur
+    int prison;             //1 VRAI et 0 FAUX.
+    int nbTourEnPrison;       //Max 3 tours en prison. Après le joueur est libéré.
+
+
+
+
+} Joueur;
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs (pris sur le campus)
+
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+
+}
+
+
+
+
+
+
+
+
+int saisirJoueurs (char nomsJoueurs[4][20])//Sous programme permettant de savoir le pseudo et le  nombre de joueurs qui vont participer
+{
+    int nbJoueur = 0;
+
+    Color(12,0);
+    do
+    {
+        printf("Saisissez le nombre de Joueurs (max 4): ");
+        scanf("%d", &nbJoueur);
+    }
+    while(nbJoueur <1 || nbJoueur  >4);//Blindage car on ne peux pas joueur à plus de 4
+
+    for (int i=0; i<nbJoueur ; i++ )//Permet de saisir à la suite le pseudo de chaque joueur voulant participer au jeu
+    {
+        printf("\nSaisissez le pseudo du joueur %d : ", i+1);
+        scanf("%s", nomsJoueurs[i]);
+    }
+
+    Color(6,0);//changement de la couleur du texte
+    for(int i=0; i<nbJoueur ; i++)
+    {
+
+        printf("\nJoueur %d: %s\n",i+1, nomsJoueurs[i]);//Affiche le nom  des joueurs
+    }
+
+    Color(15,0);
+    return nbJoueur ;
+}
+
+
+#endif // FONCTIONS_H_INCLUDED
 
 
 
