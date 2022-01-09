@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int carteChance
+{
+    printf("C'EST LA SAINT VALENTIN RENDEZ-VOUS A LA TOUR EIFFEL);
+    printf("RETOURNEZ A LA CASE DEPART ET TOUCHEZ 100 euros");
+    printf("IL FAIT FROID ET LA NEIGE PARALYSE LE TRAFFIC AERIEN : RETOURNEZ A MARAKECH.");
+    printf("C’EST VOTRE ANNIVERSAIRE : TOUCHEZ 50 euros");
+    printf("CORRUPTION : VOUS POUVEZ REJOUER");
+    printf("PILLAGE : VOUS DEVEZ DONNER L'UNE DE VOS PROPRIIETES A UN AUTRE JOUEUR");
+    printf("Vous avez gagné le prix de mots croisés. Recevez 100 euros");
+    printf("Rendez vous à Barcelone. Si vous passez par la case Départ, recevez 100 euros");
+    printf("Allez en prison. Rendez vous directement à la prison sans passer par la case Départ.");
+    printf("Sortie de prison : utilisez cette carte si vous êtes en prison pour en sortir gratuitement");
+   
+    
+}
+
+
+int carteCommunaute()
+{
+    printf("La vente de votre stock vous rapporte 200 euros");
+    printf("Payez votre Police d'Assurance s'élevant 150 euros);
+    printf("Recevez votre revenu annuel de 50 euros");
+    printf("Vous avez gagné le deuxième Prix de Beauté. Recevez 250 euros");
+    printf("Payez la note du Médecin, 100 euros");
+    printf("Les Contributions vous remboursent la somme de 200 euros");
+    printf("Erreur de la Banque en votre faveur Recevez 150 euros");
+    printf("Recevez votre intérêt sur l'emprunt à 7 % , recevez 75 euros");
+    printf("Payez 300 euros à l'Hôpital ");
+    printf("Vous héritez de votre grand père, vous recevez 250 euros");
+           
+
+}
+
