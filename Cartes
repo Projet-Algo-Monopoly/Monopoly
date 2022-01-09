@@ -1,36 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-int carteChance
+int resultat=0;
+
+int main()
 {
-    printf("C'EST LA SAINT VALENTIN RENDEZ-VOUS A LA TOUR EIFFEL);
-    printf("RETOURNEZ A LA CASE DEPART ET TOUCHEZ 100 euros");
-    printf("IL FAIT FROID ET LA NEIGE PARALYSE LE TRAFFIC AERIEN : RETOURNEZ A MARAKECH.");
-    printf("C’EST VOTRE ANNIVERSAIRE : TOUCHEZ 50 euros");
-    printf("CORRUPTION : VOUS POUVEZ REJOUER");
-    printf("PILLAGE : VOUS DEVEZ DONNER L'UNE DE VOS PROPRIIETES A UN AUTRE JOUEUR");
-    printf("Vous avez gagné le prix de mots croisés. Recevez 100 euros");
-    printf("Rendez vous à Barcelone. Si vous passez par la case Départ, recevez 100 euros");
-    printf("Allez en prison. Rendez vous directement à la prison sans passer par la case Départ.");
-    printf("Sortie de prison : utilisez cette carte si vous êtes en prison pour en sortir gratuitement");
-   
-    
+    srand(time(NULL));
+    int resultat = 1+rand()%20;
+    if (resultat>10)
+        printf("Vous avez tire une carte communauté\n");
+    else
+        printf("Vous avez tire une carte chance\n");
+    switch (resultat)
+    {
+        //cartes chance
+        case 1: printf("C'EST LA SAINT VALENTIN RENDEZ-VOUS A LA TOUR EIFFEL");break;
+        case 2: printf("RETOURNEZ A LA CASE DEPART ET TOUCHEZ 100 euros");break;
+        case 3:printf("IL FAIT FROID ET LA NEIGE PARALYSE LE TRAFFIC AERIEN : RETOURNEZ A MARAKECH.");break;
+        case 4:printf("C’EST VOTRE ANNIVERSAIRE : TOUCHEZ 50 euros");break;
+        case 5:printf("CORRUPTION : VOUS POUVEZ REJOUER");break;
+        case 6:printf("PILLAGE : VOUS DEVEZ DONNER L'UNE DE VOS PROPRIIETES A UN AUTRE JOUEUR");break;
+        case 7:printf("Vous avez gagné le prix de mots croisés. Recevez 100 euros");break;
+        case 8:printf("Rendez vous à Barcelone. Si vous passez par la case Départ, recevez 100 euros");break;
+        case 9:printf("Allez en prison. Rendez vous directement à la prison sans passer par la case Départ.");break;
+        case 10:printf("Sortie de prison : utilisez cette carte si vous êtes en prison pour en sortir gratuitement");break;
+        //cartes communauté
+        case 11: printf("La vente de votre stock vous rapporte 200 euros");break;
+        case 12: printf("Payez votre Police d'Assurance s'élevant 150 euros");break;
+        case 13:printf("Recevez votre revenu annuel de 50 euros");break;
+        case 14:printf("Vous avez gagné le deuxième Prix de Beauté. Recevez 250 euros");break;
+        case 15:printf("Payez la note du Médecin, 100 euros");break;
+        case 16:printf("Les Contributions vous remboursent la somme de 200 euros");break;
+        case 17:printf("Erreur de la Banque en votre faveur. Recevez 150 euros");break;
+        case 18:printf("Recevez votre intérêt sur l'emprunt à 7 % , recevez 75 euros");break;
+        case 19:printf("Payez 300 euros à l'Hôpital");break;
+        case 20:printf("Vous héritez de votre grand père, vous recevez 250 euros");break;
+
+    }
+    return 0;
+
+
 }
 
 
-int carteCommunaute()
-{
-    printf("La vente de votre stock vous rapporte 200 euros");
-    printf("Payez votre Police d'Assurance s'élevant 150 euros);
-    printf("Recevez votre revenu annuel de 50 euros");
-    printf("Vous avez gagné le deuxième Prix de Beauté. Recevez 250 euros");
-    printf("Payez la note du Médecin, 100 euros");
-    printf("Les Contributions vous remboursent la somme de 200 euros");
-    printf("Erreur de la Banque en votre faveur Recevez 150 euros");
-    printf("Recevez votre intérêt sur l'emprunt à 7 % , recevez 75 euros");
-    printf("Payez 300 euros à l'Hôpital ");
-    printf("Vous héritez de votre grand père, vous recevez 250 euros");
-           
 
-}
 
